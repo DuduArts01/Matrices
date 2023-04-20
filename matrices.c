@@ -219,13 +219,13 @@ void multiplicationMatrices(void) {
     if (columnA != lineB) {
         printf("The product of this matrix does not exist!");
     } else {
-        float A[lineA][columnA], B[lineB][columnB], product[lineA][columnB];
+        int A[lineA][columnA], B[lineB][columnB], product[lineA][columnB];
         // These are all the matrices needed
 
         for(int i = 0; i < lineA; i++){
             for(int j = 0; j < columnA; j++){
                 printf("A%i%i = ", i, j);
-                scanf("%f", &A[i][j]);
+                scanf("%i", &A[i][j]);
             }
         }
         //input values of matrice A
@@ -234,7 +234,7 @@ void multiplicationMatrices(void) {
         for(int i = 0; i < lineB; i++){
             for(int j = 0; j < columnB; j++){
                 printf("B%i%i = ", i, j);
-                scanf("%f", &B[i][j]);
+                scanf("%i", &B[i][j]);
             }
         }
         //input values of matrice B
@@ -255,7 +255,7 @@ void multiplicationMatrices(void) {
             for(jA = 0, iB = 0; jA < columnA; ++iB, ++jA){
                 product[iA][jB] += (A[iA][jA] * B[iB][jB]);
                 printf("iA = %i, jA = %i, iB = %i, jB = %i\n", iA, jA, iB, jB);
-                printf("product%i%i = [%f]\n", iA, jB, product[iA][jB]);
+                printf("product%i%i = [%i]\n", iA, jB, product[iA][jB]);
 
                 //increases matrix column A and line B               
             }                    
