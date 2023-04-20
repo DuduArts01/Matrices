@@ -8,6 +8,7 @@ void options(void);
 void checknumber(void);
 void sumMatrices(void);
 void subtractionMatrices(void);
+void multiplicationMatrices(void);
 
 //Global variable
 int gChoose;
@@ -16,7 +17,7 @@ int main() {
     title();
     options();
     checknumber();
-    printf("------------------------------------------------------------\n");
+    printf("\n\n------------------------------------------------------------\n");
     printf("                    End Program\n");
     printf("------------------------------------------------------------\n");
     //End
@@ -28,6 +29,8 @@ void title(void){
     printf("------------------------------------------------------------\n");
     printf("                        Matrices\n");
     printf("------------------------------------------------------------\n");
+    printf("Made by DuduArts01\n");
+    printf("_____________________________________________________________\n\n");
 }
 
 void options(void) {
@@ -44,50 +47,34 @@ void options(void) {
 void checknumber(void){
     bool validLoop = true;
     bool validLoop2 = true;
-    char chooseContinue;
-    
-    while (validLoop){ 
-        printf("\nChoose(number): ");
-        scanf("%i", &gChoose);
-        switch (gChoose){
-            case 1:
-                sumMatrices();
-            break;
-            
-            case 2:
-                printf("segunda");
-                subtractionMatrices();
-            break;
-            
-            case 3:
-                printf("terceira");
-            break;
-            
-            case 4:
-                printf("quarta");
-            break;
-            
-            case 5:
-                printf("quinta");
-            break;
-            
-            default:
-                printf("Number invalid! Try again\n");
-                
-            }
-        while(validLoop2) {
-            char chooseContinue;
-            printf("Do you want continue? [Y/N]\n");
-            scanf("%c", &chooseContinue);
-            if((chooseContinue != "y") || (chooseContinue != "Y") || (chooseContinue != "N") || (chooseContinue != "n")){
-                printf("Choose Invalid! Try Again using two words Y or N\n");
-            } else if ((chooseContinue == "Y") || (chooseContinue == "y")){
-                validLoop2 = false;
-            } else if((chooseContinue == "N") || (chooseContinue == "n")){
-                validLoop = false;
-                validLoop2 = false;
-            }
-        }
+    char chooseContinue;   
+
+    printf("\nChoose(number): ");
+    scanf("%i", &gChoose);
+
+    switch (gChoose){
+        case 1:
+            sumMatrices();
+        break;
+        
+        case 2:
+            subtractionMatrices();
+        break;
+        
+        case 3:
+            multiplicationMatrices();
+        break;
+        
+        case 4:
+            printf("quarta");
+        break;
+        
+        case 5:
+            printf("quinta");
+        break;
+        
+        default:
+            printf("Number invalid! Try again\n");              
     }
 }
 
@@ -132,13 +119,13 @@ void sumMatrices(void){
             sum[i][j] = A[i][j] + B[i][j];
         }
     }
-    //sum of two matrices
+    //Calculate sum of two matrices
 
     for(int i = 0; i < line; i++){
         printf("\n");
         printf("[");
         for(int j = 0; j < column; j++){
-            printf("Sum%i%i = %.3f ", i, j, sum[i][j]);
+            printf("%.3f ", sum[i][j]);
         }
         printf("]");
     }
@@ -188,13 +175,13 @@ void subtractionMatrices(void){
             sub[i][j] = A[i][j] - B[i][j];
         }
     }
-    //sum of two matrices
+    //Calculate subtraction of two matrices
 
     for(int i = 0; i < line; i++){
         printf("\n");
         printf("[");
         for(int j = 0; j < column; j++){
-            printf("Subtraction%i%i = %.3f ", i, j, sub[i][j]);
+            printf("%.3f ", sub[i][j]);
         }
         printf("]");
     }
@@ -202,4 +189,78 @@ void subtractionMatrices(void){
 
     printf("\n---------------------Completed calculation---------------------\n");
     
+}
+
+void multiplicationMatrices(void) {
+    int lineA, columnA, lineB, columnB;
+
+    printf("------------------------------------------------------------\n");
+    printf("                    Multiplication of two Matrices\n");
+    printf("------------------------------------------------------------\n");
+    //title
+
+    printf("\nType Matrice A: \nLine = ");
+    scanf("%i", &lineA);
+    printf("Column = ");
+    scanf("%i", &columnA);
+    // line and column of matrice A
+
+    printf("\nType Matrice B: \nLine = ");
+    scanf("%i", &lineB);
+    printf("Column = ");
+    scanf("%i", &columnB);
+    // line and column of matrice B
+    
+
+    printf("\n");
+    
+    //check the array, if it exists
+
+    if (columnA != lineB) {
+        printf("The product of this matrix does not exist!");
+    } else {
+        float A[lineA][columnA], B[lineB][columnB], product[lineA][columnB];
+        // These are all the matrices needed
+
+        for(int i = 0; i < lineA; i++){
+            for(int j = 0; j < columnA; j++){
+                printf("A%i%i = ", i, j);
+                scanf("%f", &A[i][j]);
+            }
+        }
+        //input values of matrice A
+
+        printf("\n");
+        for(int i = 0; i < lineB; i++){
+            for(int j = 0; j < columnB; j++){
+                printf("B%i%i = ", i, j);
+                scanf("%f", &B[i][j]);
+            }
+        }
+        //input values of matrice B
+
+
+        int iA, jA, iB, jB;
+        //i = line and j = column
+
+        for(iA = 0, jB = 0; iA <= (lineA - 1); ++jB){
+            if(jB > (columnB - 1)){
+                jB = 0;
+                ++iA;
+            }
+            if(iA > (lineA - 1)){
+                break;
+                // corrective factor for the above condition
+            }
+            for(jA = 0, iB = 0; jA < columnA; ++iB, ++jA){
+                product[iA][jB] += (A[iA][jA] * B[iB][jB]);
+                printf("iA = %i, jA = %i, iB = %i, jB = %i\n", iA, jA, iB, jB);
+                printf("product%i%i = [%f]\n", iA, jB, product[iA][jB]);
+
+                //increases matrix column A and line B               
+            }                    
+        }
+        //Calculate Multiplication of two matrices
+
+    }
 }
