@@ -94,13 +94,13 @@ void sumMatrices(void){
 
     printf("\n");
 
-    float A[line][column], B[line][column], sum[line][column];
+    int A[line][column], B[line][column], sum[line][column];
     // These are all the matrices needed
 
     for(int i = 0; i < line; i++){
         for(int j = 0; j < column; j++){
             printf("A%i%i = ", i, j);
-            scanf("%f", &A[i][j]);
+            scanf("%i", &A[i][j]);
         }
     }
     //input values of matrice A
@@ -109,7 +109,7 @@ void sumMatrices(void){
     for(int i = 0; i < line; i++){
         for(int j = 0; j < column; j++){
             printf("B%i%i = ", i, j);
-            scanf("%f", &B[i][j]);
+            scanf("%i", &B[i][j]);
         }
     }
     //input values of matrice B
@@ -125,7 +125,7 @@ void sumMatrices(void){
         printf("\n");
         printf("[");
         for(int j = 0; j < column; j++){
-            printf("%.3f ", sum[i][j]);
+            printf("%i ", sum[i][j]);
         }
         printf("]");
     }
@@ -150,13 +150,13 @@ void subtractionMatrices(void){
 
     printf("\n");
 
-    float A[line][column], B[line][column], sub[line][column];
+    int A[line][column], B[line][column], sub[line][column];
     // These are all the matrices needed
 
     for(int i = 0; i < line; i++){
         for(int j = 0; j < column; j++){
             printf("A%i%i = ", i, j);
-            scanf("%f", &A[i][j]);
+            scanf("%i", &A[i][j]);
         }
     }
     //input values of matrice A
@@ -165,7 +165,7 @@ void subtractionMatrices(void){
     for(int i = 0; i < line; i++){
         for(int j = 0; j < column; j++){
             printf("B%i%i = ", i, j);
-            scanf("%f", &B[i][j]);
+            scanf("%i", &B[i][j]);
         }
     }
     //input values of matrice B
@@ -181,7 +181,7 @@ void subtractionMatrices(void){
         printf("\n");
         printf("[");
         for(int j = 0; j < column; j++){
-            printf("%.3f ", sub[i][j]);
+            printf("%i ", sub[i][j]);
         }
         printf("]");
     }
@@ -222,6 +222,8 @@ void multiplicationMatrices(void) {
         int A[lineA][columnA], B[lineB][columnB], product[lineA][columnB];
         // These are all the matrices needed
 
+        int iA, jA, iB, jB, count; // lines and columns
+
         for(int i = 0; i < lineA; i++){
             for(int j = 0; j < columnA; j++){
                 printf("A%i%i = ", i, j);
@@ -238,29 +240,22 @@ void multiplicationMatrices(void) {
             }
         }
         //input values of matrice B
-
-
-        int iA, jA, iB, jB;
-        //i = line and j = column
-
-        for(iA = 0, jB = 0; iA <= (lineA - 1); ++jB){
-            if(jB > (columnB - 1)){
-                jB = 0;
-                ++iA;
+        
+        for(iA = 0; iA < lineA; ++iA){
+            for(jB = 0; jB < columnB; ++jB){
+                for(jA = 0, iB = 0, count = 0; jA < columnA; ++jA, ++iB){
+                    product[iA][jB] = (count != 0)? product[iA][jB] += (A[iA][jA] * B[iB][jB]) : A[iA][jA] * B[iB][jB];
+                    ++count;                                        
+                }
             }
-            if(iA > (lineA - 1)){
-                break;
-                // corrective factor for the above condition
-            }
-            for(jA = 0, iB = 0; jA < columnA; ++iB, ++jA){
-                product[iA][jB] += (A[iA][jA] * B[iB][jB]);
-                printf("iA = %i, jA = %i, iB = %i, jB = %i\n", iA, jA, iB, jB);
-                printf("product%i%i = [%i]\n", iA, jB, product[iA][jB]);
-
-                //increases matrix column A and line B               
-            }                    
         }
         //Calculate Multiplication of two matrices
+    for(int i = 0; i < lineA; ++i){
+        for(int j = 0; j < columnB; ++j){
+            printf("\nproduct%i%i = %i", i, j, product[i][j]);
+        }
+        
+    }
 
     }
 }
