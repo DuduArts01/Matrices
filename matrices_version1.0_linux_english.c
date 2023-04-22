@@ -80,7 +80,7 @@ void checknumber(void){
 
             default:
                 printf("\nNumber invalid! Try again\n");
-                printf("\npress key space to continue\n");
+                printf("\npress enter key to continue\n");
                 getchar();
                 getchar();
                 system("clear");
@@ -103,7 +103,7 @@ void checknumber(void){
                     validLoop2 = false;
                 } else {
                     printf("\nNumber invalid! Try again\n");
-                    printf("\npress key space to continue\n");
+                    printf("\npress enter key to continue\n");
                     getchar();
                     getchar();
                     system("clear");
