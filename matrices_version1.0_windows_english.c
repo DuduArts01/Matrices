@@ -22,7 +22,7 @@ int main() {
     printf("\nThanks for using my program\n");
     printf("Follow me in GitHub: https://github.com/DuduArts01");
     printf("\n\n------------------------------------------------------------\n");
-    printf("                    End Program\n");
+    printf("                    Finished program\n");
     printf("------------------------------------------------------------\n");
     //End
 
