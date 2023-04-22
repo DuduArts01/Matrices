@@ -15,8 +15,10 @@ int gChoose;
 
 int main() {
     title();
-    options();
     checknumber();
+    printf("______________________________________________________________");
+    printf("\nThanks for using my program\n");
+    printf("Follow me in GitHub: https://github.com/DuduArts01");
     printf("\n\n------------------------------------------------------------\n");
     printf("                    End Program\n");
     printf("------------------------------------------------------------\n");
@@ -26,7 +28,7 @@ int main() {
 }
 
 void title(void){
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
     printf("                        Matrices\n");
     printf("------------------------------------------------------------\n");
     printf("Made by DuduArts01\n");
@@ -34,54 +36,76 @@ void title(void){
 }
 
 void options(void) {
-    printf("Choose one of the options below:\n");
-    printf("____________________________________________________________\n");
+    printf("\n\n------------------------------------------------------------\n");
+    printf("            Choose one of the options below:\n");
+    printf("------------------------------------------------------------\n");
     printf("1. Sum of Two Matrices\n");
     printf("2. Subtraction of two Matrices\n");
     printf("3. Multiplication of two Matrices\n");
-    printf("4. Transposed\n");
-    printf("5. Inverse\n");
     printf("____________________________________________________________\n");
 }
 
 void checknumber(void){
     bool validLoop = true;
-    bool validLoop2 = true;
-    char chooseContinue;   
+    bool validLoop2 = false;
+    
+    int chooseContinue;   
+    bool end = false;
 
-    printf("\nChoose(number): ");
-    scanf("%i", &gChoose);
+    while(validLoop){
+        options();
+        printf("Choose(number): ");
+        scanf("%i", &gChoose);
 
-    switch (gChoose){
-        case 1:
-            sumMatrices();
-        break;
+        switch (gChoose){
+            case 1:
+                sumMatrices();
+                end = true;
+            break;
+            
+            case 2:
+                subtractionMatrices();
+                end = true;
+            break;
+            
+            case 3:
+                multiplicationMatrices();
+                end = true;
+            break;
+
+            default:
+                printf("\nNumber invalid! Try again\n");
+            break;
+        }
+        if(end == true){
+            validLoop2 = true;
+            while(validLoop2){
+                printf("\nDo you want continue? \nYes --> 1\nNo --> 0\nChoose: ");
+                scanf("%i", &chooseContinue);
+                    
+                if(chooseContinue == 1){
+                    end = false;
+                    validLoop2 = false;
+
+                } else if(chooseContinue == 0){
+                    end = false;
+                    validLoop = false;
+                    validLoop2 = false;
+                } else {
+                    printf("\nNumber invalid! Try again\n");
+                }
+                
+            }
+            
+        }
         
-        case 2:
-            subtractionMatrices();
-        break;
-        
-        case 3:
-            multiplicationMatrices();
-        break;
-        
-        case 4:
-            printf("quarta");
-        break;
-        
-        case 5:
-            printf("quinta");
-        break;
-        
-        default:
-            printf("Number invalid! Try again\n");              
     }
 }
 
 void sumMatrices(void){
     int line, column;
 
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
     printf("                    Sum of two Matrices\n");
     printf("------------------------------------------------------------\n");
     //title
@@ -137,7 +161,7 @@ void sumMatrices(void){
 void subtractionMatrices(void){
     int line, column;
 
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
     printf("                    Subtraction of two Matrices\n");
     printf("------------------------------------------------------------\n");
     //title
@@ -194,7 +218,7 @@ void subtractionMatrices(void){
 void multiplicationMatrices(void) {
     int lineA, columnA, lineB, columnB;
 
-    printf("------------------------------------------------------------\n");
+    printf("\n------------------------------------------------------------\n");
     printf("                    Multiplication of two Matrices\n");
     printf("------------------------------------------------------------\n");
     //title
@@ -250,12 +274,17 @@ void multiplicationMatrices(void) {
             }
         }
         //Calculate Multiplication of two matrices
-    for(int i = 0; i < lineA; ++i){
-        for(int j = 0; j < columnB; ++j){
-            printf("\nproduct%i%i = %i", i, j, product[i][j]);
+    for(int i = 0; i < lineA; i++){
+        printf("\n");
+        printf("[");
+        for(int j = 0; j < columnB; j++){
+            printf("%i ", product[i][j]);
         }
-        
+        printf("]");
     }
+    //show result of multiplication
+
+    printf("\n---------------------Completed calculation---------------------\n");
 
     }
 }
