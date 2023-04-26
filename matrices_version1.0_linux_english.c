@@ -20,7 +20,8 @@ int main() {
     title();
     printf("______________________________________________________________");
     printf("\nThanks for using my program\n");
-    printf("Follow me in GitHub: https://github.com/DuduArts01");
+    printf("Follow me in GitHub: https://github.com/DuduArts01\n");
+    printf("Follow me in LinkedIn: https://www.linkedin.com/in/eduardo-de-medeiros-siqueira-b02044252");
     printf("\n\n------------------------------------------------------------\n");
     printf("                    Finished program\n");
     printf("------------------------------------------------------------\n");
